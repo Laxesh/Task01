@@ -7,7 +7,7 @@ submitBtn.addEventListener("click", async () => {
     const prompt = promptTextarea.value.trim();
     if (!prompt) throw new Error("invaild Prompt");
 
-    const url = "https://chatgpt-42.p.rapidapi.com/conversationgpt4-2";
+    const url = "https://chatgpt-42.p.rapidapi.com/chatgpt";
 
     const options = {
       method: "POST",
@@ -23,11 +23,6 @@ submitBtn.addEventListener("click", async () => {
             content: prompt,
           },
         ],
-        system_prompt: "",
-        temperature: 0.9,
-        top_k: 5,
-        top_p: 0.9,
-        max_tokens: 256,
         web_access: false,
       }),
     };
@@ -35,6 +30,7 @@ submitBtn.addEventListener("click", async () => {
     const response = await fetch(url, options);
     const result = await response.text();
     promptResponse.innerHTML = result;
+
     console.log(result);
   } catch (error) {
     promptResponse.innerHTML = error;
